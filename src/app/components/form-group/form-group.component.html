@@ -1,0 +1,78 @@
+  <table [formGroup]="contactForm">
+	<tr>
+		<td>First Name:</td>
+		<td></td>
+		<td><input type="text" name="fName"  formControlName="firstName">
+			{{contactForm.get('firstName').value}}
+		</td>
+	</tr>
+	<tr>
+		<td>Last Name:</td>
+		<td></td>
+		<td><input type="text" name="lName" formControlName="lastName">
+		</td>
+	</tr>
+	<tr>
+		<td>Email:</td>
+		<td></td>
+		<td><input type="email" name="eml"  formControlName="email">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="4">
+			<button (click)="addMore()">Add More Address</button>
+		</td>
+	</tr>
+	<tr formArrayName="address"
+		*ngFor="let item of contactForm.get('address').controls;let i= index"
+	>
+		<td colspan="4" [formGroupName]="i">
+			<table>
+				<tr>
+					<td colspan="4">
+						Address {{i+1}}
+						<br/>
+						<button (click)="removeAddress(i)">Remove Address</button>
+					</td>
+				</tr>
+				<tr>
+					<td>Street:</td>
+					<td></td>
+					<td>
+						<input type="text" formControlName="street">
+					</td>
+				</tr>
+				
+				<tr>
+					<td>City:</td>
+					<td></td>
+					<td>
+						<input type="text" formControlName="city">
+					</td>
+				</tr>
+				
+				<tr>
+					<td>State:</td>
+					<td></td>
+					<td>
+						<input type="text" formControlName="state">
+					</td>
+				</tr>
+				<tr>
+					<td>Zip Code:</td>
+					<td></td>
+					<td>
+						<input type="text" formControlName="zip">
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr >
+	
+	<tr>
+		<td colspan="4">
+			<button type="submit" [disabled]="!contactForm.valid">Submit</button>
+		</td>
+	</tr>
+
+  </table>  

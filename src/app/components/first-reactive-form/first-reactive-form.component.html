@@ -1,0 +1,25 @@
+<table>
+  <tr>
+      <td>
+    </td>
+      <td>
+        <input name="email"  type="text" [formControl]="email"/>
+      </td>
+  </tr>
+  <tr>
+    <td>Using Property</td>
+    <td>{{email.value}}</td>
+  </tr>
+  <tr>
+    <td>Using Observable valueChanges</td>
+    <td>{{email.valueChanges|async}}</td>
+  </tr>
+  
+   <tr>
+      <td>
+    </td>
+      <td>
+        <input [disabled]="!email.valid" type="button" value="Change Value" (click)="changeEmailValue()"/>
+      </td>
+  </tr>
+</table>
