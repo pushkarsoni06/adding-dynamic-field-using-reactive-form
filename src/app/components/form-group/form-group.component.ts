@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-form-group',
@@ -29,11 +29,21 @@ export class FormGroupComponent implements OnInit {
     var addresses= this.contactForm.get('address') as FormArray;
     addresses.removeAt(indexToRemove);
   }
+
+  validURL(control: AbstractControl) {
+    if(!control.value.startsWith('https://') || !control.value.includes('.com')) {
+      return {
+        isValid : false
+      }
+    }
+    return null;
+  }
   
   ngOnInit() {
     this.contactForm = this.fb.group({
-      firstName : ['', Validators.required],
+      firstName : ['', [Validators.required, Validators.pattern('^[a-z0-9_-]{3,15}$')]],
       lastName : [''],
+      website : ['', this.validURL],
       email: ['', Validators.email],
       address : this.fb.array([this.itemToAdd()])
     })

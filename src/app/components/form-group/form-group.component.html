@@ -12,6 +12,13 @@
 		<td><input type="text" name="lName" formControlName="lastName">
 		</td>
 	</tr>
+
+	<tr>
+		<td>Website:</td>
+		<td></td>
+		<td><input type="text" name="lName" formControlName="website">
+		</td>
+	</tr>
 	<tr>
 		<td>Email:</td>
 		<td></td>
@@ -29,9 +36,10 @@
 		<td colspan="4" [formGroupName]="i">
 			<table>
 				<tr>
-					<td colspan="4">
+					<td colspan="3">
 						Address {{i+1}}
-						<br/>
+					</td>
+					<td>
 						<button (click)="removeAddress(i)">Remove Address</button>
 					</td>
 				</tr>
